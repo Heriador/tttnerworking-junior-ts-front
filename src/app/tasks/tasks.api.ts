@@ -1,6 +1,7 @@
+import { Task } from "./task.interface";
 
 
-export async function createTask(task: any){
+export async function createTask(task: Task){
     const res = await fetch(`http://localhost:4000/api/tasks`, {
         method: "POST",
         body: JSON.stringify(task),
@@ -42,7 +43,8 @@ export async function getTask(taskId: number){
     return data;
 }
 
-export async function updateTask(taskId: number, task: any){
+export async function updateTask(taskId: number, task: Task){
+    console.log(task)
     const res = await fetch(`http://localhost:4000/api/tasks/${taskId}`, {
         method: "PUT",
         body: JSON.stringify(task),
@@ -52,7 +54,7 @@ export async function updateTask(taskId: number, task: any){
             "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIzQGdtYWlsLmNvbSIsInN1YiI6MywiaWF0IjoxNzMwMjQzMTA4LCJleHAiOjE3MzA3NjE1MDh9.cRf9sLz7EECkzEazHxTXs59iei-GbFyS3Tm9bufZnVU`
         }
     });
-
+    console.log(res)
     return await res.json();
 }
 

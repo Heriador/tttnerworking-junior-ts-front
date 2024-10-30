@@ -5,9 +5,13 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { deleteTask } from "./tasks.api";
+import { TaskResponse } from "./task.interface";
 
+interface Props{
+  task: TaskResponse;
+}
 
-export function TaskCard({task}){
+export function TaskCard({task}: Props){
   const router = useRouter();
 
   async function HandleDeleteTask(taskId: number){

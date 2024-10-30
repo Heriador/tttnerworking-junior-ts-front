@@ -7,9 +7,13 @@ import { useForm } from "react-hook-form";
 import { createTask, updateTask } from "../tasks.api";
 import { useParams, useRouter } from "next/navigation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Task } from "../task.interface";
 
+interface Props{
+    task: Task;
+  }
 
-function TaskForm({task}: any){
+function TaskForm({task}: Props){
 
     const { register, handleSubmit, setValue } = useForm({
         defaultValues: {
@@ -24,7 +28,6 @@ function TaskForm({task}: any){
 
     const onSubmit = handleSubmit(async (data) =>  {
         if(params.id){
-            console.log(data)
             const updatedTask = await updateTask(Number(params.id), data);
             console.log(updatedTask)
             router.push("/")
